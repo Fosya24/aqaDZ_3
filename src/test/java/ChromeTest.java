@@ -33,6 +33,7 @@ public class ChromeTest {
     @AfterEach
     void teardown() {
         driver.quit();
+        driver = null;
     }
 
     @Test
