@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -38,20 +37,13 @@ public class ChromeTest {
 
     @Test
     void shouldSubmitRequestTest() {
-        WebElement nameForm = driver.findElement(By.cssSelector("[data-test-id='name']"));
-        nameForm.findElement(By.cssSelector("[name='name']"))
-                .sendKeys("Пр-рл ");
-
-        WebElement phoneForm = driver.findElement(By.cssSelector("[data-test-id='phone']"));
-        phoneForm.findElement(By.cssSelector("[name='phone']"))
-                .sendKeys("+79290000000");
-
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Пр-рл ");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79290000000");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("[type='button']")).click();
-
         String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
 }
